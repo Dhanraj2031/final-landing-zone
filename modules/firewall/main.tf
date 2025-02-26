@@ -24,7 +24,42 @@ resource "azurerm_firewall" "firewall" {
     name                 = "configuration"
     subnet_id            = var.subnet_id
     public_ip_address_id = azurerm_public_ip.firewall-pubip.id
-    private_ip_address   = var.private_ip_address                  #["10.90.34.0"]
+                      #["10.90.34.0"]
   }
 }
 
+resource "azurerm_firewall_policy_rule_collection_group" "example" {
+  name               = "vpn-fwpolicy-rcg"
+  firewall_policy_id = azurerm_firewall_policy.firewall-pol.id
+  priority           = 500
+
+ 
+
+  # Network Rule Collection
+  network_rule_collection {
+    name     = "network_rule_collection1"
+    priority = 110
+    action   = "Allow"
+
+    rule {
+      name                  = "network_rule_collection1_rule1"
+      protocols             = ["TCP", "UDP"]
+      source_addresses      = var.on_premises_cidr
+      destination_addresses = var.spoke1_cidr
+      destination_ports     = ["*"]
+    }
+  }
+  network_rule_collection {
+    name     = "network_rule_collection2"
+    priority = 120
+    action   = "Allow"
+
+    rule {
+      name                  = "network_rule_collection1_rule2"
+      protocols             = ["TCP", "UDP"]
+      source_addresses      = var.on_premises_cidr
+      destination_addresses = var.spoke2_cidr
+      destination_ports     = ["*"]
+    }
+  }
+}
