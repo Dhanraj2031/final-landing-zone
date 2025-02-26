@@ -21,6 +21,6 @@ variable "firewall_policy_name" {
   type = string
 }
 
-variable "private_ip_address" {
-  type = string
-}
+
+
+

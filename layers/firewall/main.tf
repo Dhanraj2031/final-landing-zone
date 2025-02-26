@@ -8,9 +8,15 @@ module "firewall" {
   sku = var.sku
   sku_name = var.sku_name
   sku_tier = var.sku_tier
-  private_ip_address = var.private_ip_address
+
   allocation_method = var.allocation_method
   pubip_name = var.pubip_name
+  spoke1_cidr = module.spoke1.address_space
+  spoke2_cidr = module.spoke2.address_space
+  on_premises_cidr = module.on-on_premises_cidr.address_space
+
+
+  
 }
 
 module "rg_truth" {
@@ -19,4 +25,15 @@ module "rg_truth" {
 
 module "snet_truth" {
   source = "../../truth_module/hub-vnet"
+}
+ 
+ module"spoke1"{
+  source = "../../truth_module/spoke1"
+ }
+  module"spoke2"{
+  source = "../../truth_module/spoke2"
+ }
+module "on-on_premises_cidr" {
+  source = "../../truth_module/onprem-vnet"
+  
 }
