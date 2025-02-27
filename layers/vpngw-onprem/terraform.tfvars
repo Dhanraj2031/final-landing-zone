@@ -4,6 +4,7 @@ vpn_type = "RouteBased"
 sku = "Standard"
 sku_vpn = "VpnGw1"
 type = "Vpn"
+address_space = [ "10.90.32.0/20","10.90.16.0/20","10.90.48.0/20" ]
 allocation_method = "Static"
 connection_name = "site-site"
 local_gateway_name = "onprem-lgw"

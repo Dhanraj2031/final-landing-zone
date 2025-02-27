@@ -4,6 +4,10 @@ variable "next_hop_type" {
 variable "rt_table_name" {
   type = string
 }
-variable "route_name" {
+variable "route_name_1" {
+  type = string
+}
+
+variable "route_name_2" {
   type = string
 }

@@ -8,7 +8,9 @@ module "s2-s1-rt" {
     next_hop_in_ip_address = module.hop_ip.firewall_private_ip
     next_hop_type = var.next_hop_type
     rt_table_name = var.rt_table_name
-    route_name = var.route_name
+    onprem_address_space =tolist(module.onprem_address.address_space)[0]
+    route_name_1 = var.route_name_1
+    route_name_2 = var.route_name_2
 
   
 }
@@ -27,4 +29,8 @@ module "hop_ip" {
 }
 module "subnet" {
   source = "../../truth_module/spoke2"
+}
+module "onprem_address" {
+  source = "../../truth_module/onprem-vnet"
+  
 }

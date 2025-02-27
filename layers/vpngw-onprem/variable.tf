@@ -11,6 +11,10 @@ variable "allocation_method" {
 variable "connection_name" {
   type = string
 }
+variable "address_space" {
+  type = list(string)
+  
+}
 variable "sku" {
   type = string
 }

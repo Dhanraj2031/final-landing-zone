@@ -28,7 +28,7 @@ resource "azurerm_firewall" "firewall" {
   }
 }
 
-resource "azurerm_firewall_policy_rule_collection_group" "example" {
+resource "azurerm_firewall_policy_rule_collection_group" "rule-collection" {
   name               = "vpn-fwpolicy-rcg"
   firewall_policy_id = azurerm_firewall_policy.firewall-pol.id
   priority           = 500
@@ -43,7 +43,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
 
     rule {
       name                  = "network_rule_collection1_rule1"
-      protocols             = ["TCP", "UDP"]
+      protocols             = ["TCP", "UDP","ICMP"]
       source_addresses      = var.on_premises_cidr
       destination_addresses = var.spoke1_cidr
       destination_ports     = ["*"]
@@ -56,10 +56,62 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
 
     rule {
       name                  = "network_rule_collection1_rule2"
-      protocols             = ["TCP", "UDP"]
+      protocols             = ["TCP", "UDP","ICMP"]
       source_addresses      = var.on_premises_cidr
       destination_addresses = var.spoke2_cidr
       destination_ports     = ["*"]
     }
   }
+   network_rule_collection {
+    name     = "network_rule_collection3"
+    priority = 130
+    action   = "Allow"
+
+    rule {
+      name                  = "network_rule_collection1_rule3"
+      protocols             = ["TCP", "UDP","ICMP"]
+      source_addresses      =  var.spoke1_cidr
+      destination_addresses = var.on_premises_cidr
+      destination_ports     = ["*"]
+    }
+  }
+  network_rule_collection {
+    name     = "network_rule_collection4"
+    priority = 140
+    action   = "Allow"
+
+    rule {
+      name                  = "network_rule_collection1_rule4"
+      protocols             = ["TCP", "UDP","ICMP"]
+      source_addresses      = var.spoke2_cidr
+      destination_addresses = var.on_premises_cidr
+      destination_ports     = ["*"]
+    }
+  }
+ network_rule_collection {
+    name     = "network_rule_collection5"
+    priority = 150
+    action   = "Allow"
+
+    rule {
+      name                  = "network_rule_collection1_rule5"
+      protocols             = ["TCP", "UDP","ICMP"]
+      source_addresses      = var.spoke1_cidr
+      destination_addresses = var.spoke2_cidr
+      destination_ports     = ["*"]
+    }
+  }
+  network_rule_collection {
+    name     = "network_rule_collection6"
+    priority = 160
+    action   = "Allow"
+
+    rule {
+      name                  = "network_rule_collection1_rule6"
+      protocols             = ["TCP", "UDP","ICMP"]
+      source_addresses      =var.spoke2_cidr
+      destination_addresses = var.spoke1_cidr
+      destination_ports     = ["*"]
+    }  
+}
 }

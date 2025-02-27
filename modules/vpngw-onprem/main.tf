@@ -33,7 +33,6 @@ resource "azurerm_local_network_gateway" "on_prem_gateway" {
   name                = var.local_gateway_name
   location            = var.rg_location 
   resource_group_name = var.rg_name
-  
   gateway_address     = var.gateway_address  # Correct reference
   address_space       = var.address_space 
 

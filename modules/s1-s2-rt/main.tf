@@ -4,12 +4,21 @@ resource "azurerm_route_table" "sp1-sp2" {
   resource_group_name = var.rg_name
 
   route {
-    name                   = var.route_name
+    name                   = var.route_name_1
     address_prefix         = var.spoke2_address_space
     next_hop_type          = var.next_hop_type
     next_hop_in_ip_address = var.next_hop_in_ip_address
   }
+  route {
+  name                   = var.route_name_2
+  address_prefix         = var.onprem_address_space
+  next_hop_type          = var.next_hop_type
+  next_hop_in_ip_address = var.next_hop_in_ip_address
+  }
 }
+
+
+
 
 resource "azurerm_subnet_route_table_association" "rt_table_ass1" {
     

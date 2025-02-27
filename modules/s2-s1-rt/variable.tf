@@ -7,9 +7,14 @@ variable "rg_name" {
 variable "rt_table_name" {
   type = string
 }
-variable "route_name" {
+variable "route_name_1" {
   type = string
 }
+
+variable "route_name_2" {
+  type = string
+}
+
 variable "spoke1_address_space" {
   type = string
 }
@@ -23,5 +28,8 @@ variable "subnet_id1" {
   type = string
 }
 variable "subnet_id2" {
+  type = string
+}
+variable "onprem_address_space" {
   type = string
 }

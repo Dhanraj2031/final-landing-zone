@@ -8,7 +8,6 @@ module "firewall" {
   sku = var.sku
   sku_name = var.sku_name
   sku_tier = var.sku_tier
-
   allocation_method = var.allocation_method
   pubip_name = var.pubip_name
   spoke1_cidr = module.spoke1.address_space
