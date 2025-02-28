@@ -3,13 +3,13 @@ s2_vm_config = {
     vm_name         = "app2-vm"
     nic_name       = "app2-nic"
     admin_username = "svm"
-    admin_password = "Avm2234567890"
+    admin_password = "Avm1234567890"
   }
   db2 = {
     vm_name             = "db2-vm"
     nic_name       = "db2-nic"
     admin_username = "svm"
-    admin_password = "Avm2234567890"
+    admin_password = "Avm1234567890"
   }
 }
 v2_nsg_name = {

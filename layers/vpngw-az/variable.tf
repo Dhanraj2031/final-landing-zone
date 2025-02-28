@@ -8,9 +8,7 @@ variable "vpn_pubip_name" {
 variable "allocation_method" {
   type = string
 }
-variable "connection_name" {
-  type = string
-}
+
 variable "sku" {
   type = string
 }
@@ -27,6 +25,3 @@ variable "ip_configuration_name" {
   type = string
 }
 
-variable "local_gateway_name" {
-  type = string
-}

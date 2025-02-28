@@ -28,31 +28,31 @@ resource "azurerm_virtual_network_gateway" "vpn_gateway" {
    depends_on = [azurerm_public_ip.vpn_pubip] 
 }
 
-#Step 3: Create the Local Network Gateway (On-Premises VPN Device)
-resource "azurerm_local_network_gateway" "az_gateway" {
-  name                = var.local_gateway_name
-  location            = var.rg_location 
-  resource_group_name = var.rg_name
+# #Step 3: Create the Local Network Gateway (On-Premises VPN Device)
+# resource "azurerm_local_network_gateway" "az_gateway" {
+#   name                = var.local_gateway_name
+#   location            = var.rg_location 
+#   resource_group_name = var.rg_name
   
-  gateway_address     = var.gateway_address 
-  address_space       = var.address_space 
+#   gateway_address     = var.gateway_address 
+#   address_space       = var.address_space 
 
-  depends_on = [azurerm_public_ip.vpn_pubip]
-}
+#   depends_on = [azurerm_public_ip.vpn_pubip]
+# }
 
-resource "azurerm_virtual_network_gateway_connection" "connection" {
-  name                = var.connection_name
-  location            = var.rg_location
-  resource_group_name = var.rg_name
+# resource "azurerm_virtual_network_gateway_connection" "connection" {
+#   name                = var.connection_name
+#   location            = var.rg_location
+#   resource_group_name = var.rg_name
 
-  type                       = "IPsec"
-  virtual_network_gateway_id = azurerm_virtual_network_gateway.vpn_gateway.id
-  local_network_gateway_id   = azurerm_local_network_gateway.az_gateway.id
+#   type                       = "IPsec"
+#   virtual_network_gateway_id = azurerm_virtual_network_gateway.vpn_gateway.id
+#   local_network_gateway_id   = azurerm_local_network_gateway.az_gateway.id
 
-  shared_key = "D@8904702873"
+#   shared_key = "D@8904702873"
 
-    depends_on = [
-    azurerm_virtual_network_gateway.vpn_gateway,  
-    azurerm_local_network_gateway.az_gateway  
-  ]
-}
+#     depends_on = [
+#     azurerm_virtual_network_gateway.vpn_gateway,  
+#     azurerm_local_network_gateway.az_gateway  
+#   ]
+# }
