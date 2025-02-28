@@ -4,7 +4,7 @@ resource "azurerm_local_network_gateway" "on_prem_gateway" {
   location            = var.rg_location 
   resource_group_name = var.rg_name
   gateway_address     = var.gateway_address  # pubip of vpngw-az
-  address_space       = var.address_space     #add space of hub-vnet
+  address_space     = var.address_space     #add space of hub-vnet and spoke1 and spoke2
 
   
 }

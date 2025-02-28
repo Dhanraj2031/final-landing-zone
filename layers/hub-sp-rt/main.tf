@@ -1,5 +1,5 @@
 module "hub-spokes" {
-    source = "../../modules/route-table"
+    source = "../../modules/hub-sp-rt"
     rg_name = module.rg_truth.rg_name
     rg_location = module.rg_truth.rg_location
     subnet_id = module.subnet.snet2_id
